@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedPlus Klinik — Sağlığınız Önceliğimiz</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#f8fbff;--surface:#fff;--border:#e8eef7;--text:#0f172a;--muted:#64748b;--blue:#2563eb;--blue2:#3b82f6;--teal:#0ea5e9;--light:#eff6ff;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(248,251,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 1px 20px rgba(0,0,0,0.05);}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue);letter-spacing:-0.02em;}
+.logo span{color:var(--text);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-btn{padding:0.6rem 1.4rem;background:var(--blue);border:none;border-radius:8px;color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer;transition:all 0.2s;}
+.nav-btn:hover{background:#1d4ed8;transform:translateY(-1px);}
+
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 5% 5rem;gap:5rem;background:linear-gradient(135deg,#f0f7ff 0%,#f8fbff 100%);}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.15);border-radius:999px;font-size:0.75rem;color:var(--blue);font-weight:600;margin-bottom:1.5rem;}
+.tag-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--text);}
+h1 span{color:var(--blue);}
+.hero-p{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-blue{padding:0.9rem 2rem;background:var(--blue);border:none;border-radius:10px;color:#fff;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-blue:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,99,235,0.3);}
+.btn-out{padding:0.9rem 2rem;background:#fff;border:2px solid var(--border);border-radius:10px;color:var(--text);font-weight:600;font-size:0.9rem;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-out:hover{border-color:var(--blue);color:var(--blue);}
+.hero-right{position:relative;}
+.hero-card-main{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 20px 60px rgba(0,0,0,0.08);border:1px solid var(--border);}
+.clinic-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.5rem;}
+.hero-card-main h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;}
+.hero-card-main p{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:1.5rem;}
+.doc-list{display:flex;flex-direction:column;gap:0.75rem;}
+.doc-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--light);border-radius:10px;}
+.doc-ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.doc-n{font-weight:700;font-size:0.85rem;}
+.doc-t{color:var(--muted);font-size:0.75rem;}
+.doc-badge{margin-left:auto;padding:0.2rem 0.6rem;background:rgba(34,197,94,0.1);border-radius:999px;font-size:0.65rem;color:#16a34a;font-weight:600;}
+.float-cards{position:absolute;}
+.fc1{top:-1rem;right:-1rem;background:#fff;border-radius:14px;padding:1rem 1.2rem;box-shadow:0 8px 30px rgba(0,0,0,0.08);border:1px solid var(--border);}
+.fc2{bottom:1rem;left:-2rem;background:#fff;border-radius:14px;padding:1rem 1.2rem;box-shadow:0 8px 30px rgba(0,0,0,0.08);border:1px solid var(--border);}
+.fc-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:var(--blue);}
+.fc-lbl{color:var(--muted);font-size:0.72rem;margin-top:0.1rem;}
+
+#stats{padding:4rem 5%;background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;justify-content:center;gap:4rem;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.5rem;font-weight:800;color:var(--blue);}
+.stat-l{color:var(--muted);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem;}
+
+#doktorlar{padding:8rem 5%;max-width:1200px;margin:0 auto;}
+.sec-lbl{font-size:0.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.2em;font-weight:600;margin-bottom:0.5rem;}
+.sec-h{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.75rem;}
+.sec-h span{color:var(--blue);}
+.sec-p{color:var(--muted);margin-bottom:3rem;line-height:1.7;}
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+.doc-card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.doc-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,0.1);border-color:rgba(37,99,235,0.2);}
+.doc-header{height:160px;background:linear-gradient(135deg,#eff6ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:4rem;}
+.doc-body{padding:1.5rem;}
+.doc-spec{display:inline-block;padding:0.25rem 0.7rem;background:rgba(37,99,235,0.08);border-radius:999px;font-size:0.7rem;color:var(--blue);font-weight:600;margin-bottom:0.75rem;}
+.doc-body h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:0.3rem;}
+.doc-body .exp{color:var(--muted);font-size:0.8rem;margin-bottom:1rem;}
+.doc-stats{display:flex;gap:1rem;}
+.ds-item{text-align:center;}
+.ds-num{font-weight:800;font-size:0.95rem;color:var(--text);}
+.ds-lbl{color:var(--muted);font-size:0.68rem;}
+.doc-btn{width:100%;margin-top:1rem;padding:0.65rem;background:var(--blue);border:none;border-radius:8px;color:#fff;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;}
+.doc-btn:hover{background:#1d4ed8;}
+
+#hizmetler{padding:8rem 5%;background:linear-gradient(135deg,#f0f7ff,#f8fbff);border-top:1px solid var(--border);}
+#hizmetler .inner{max-width:1200px;margin:0 auto;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
+.svc-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:2rem;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.03);}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);border-color:rgba(37,99,235,0.2);}
+.svc-ico{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.2rem;}
+.svc-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;margin-bottom:0.5rem;}
+.svc-card p{color:var(--muted);font-size:0.85rem;line-height:1.6;}
+.svc-price{margin-top:1rem;font-weight:700;color:var(--blue);font-size:0.9rem;}
+
+#randevu{padding:8rem 5%;max-width:800px;margin:0 auto;text-align:center;}
+#randevu h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.75rem;}
+#randevu h2 span{color:var(--blue);}
+#randevu p{color:var(--muted);margin-bottom:3rem;line-height:1.7;}
+.appt-form{background:#fff;border:1px solid var(--border);border-radius:24px;padding:3rem;text-align:left;box-shadow:0 4px 30px rgba(0,0,0,0.06);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.fg{display:flex;flex-direction:column;gap:0.4rem;}
+.fg.full{grid-column:1/-1;}
+.fg label{font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+.fg input,.fg select{padding:0.85rem 1rem;background:var(--bg);border:2px solid var(--border);border-radius:10px;color:var(--text);font-size:0.9rem;outline:none;transition:border-color 0.2s;font-family:'Inter',sans-serif;}
+.fg input:focus,.fg select:focus{border-color:var(--blue);}
+.fg select option{background:#fff;}
+.submit-btn{width:100%;padding:1rem;background:var(--blue);border:none;border-radius:10px;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.2s;margin-top:1rem;}
+.submit-btn:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,99,235,0.3);}
+
+footer{padding:3rem 5%;background:#fff;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.foot-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue);}
+.foot-logo span{color:var(--text);}
+.foot-links{display:flex;gap:2rem;}
+.foot-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+.foot-links a:hover{color:var(--blue);}
+.foot-copy{color:var(--muted);font-size:0.78rem;}
+
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:#dcfce7;border:1px solid #86efac;border-radius:12px;padding:0.9rem 1.8rem;font-size:0.85rem;font-weight:600;color:#16a34a;z-index:600;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+#toast.show{transform:translateX(-50%) translateY(0);}
+@media(max-width:900px){#hero{grid-template-columns:1fr;}.svc-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<nav>
+  <div class="logo">Med<span>Plus</span></div>
+  <div class="nav-links">
+    <a href="#doktorlar">Doktorlar</a>
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#randevu">Randevu</a>
+    <button class="nav-btn" onclick="document.getElementById('randevu').scrollIntoView({behavior:'smooth'})">Online Randevu</button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><span class="tag-dot"></span> Şu an randevu alınabilir</div>
+    <h1>Sağlığınız <span>Önceliğimiz,</span> Güvencemiz</h1>
+    <p class="hero-p">Uzman doktor kadromuz ve modern teknolojimizle 7/24 yanınızdayız. Online randevu ile bekleme yok, hızlı ve güvenli hizmet.</p>
+    <div class="hero-btns">
+      <a href="#randevu" class="btn-blue">Online Randevu Al</a>
+      <a href="#doktorlar" class="btn-out">Doktorlarımız</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card-main">
+      <div class="clinic-icon">🏥</div>
+      <h3>Bugün Uygun Doktorlar</h3>
+      <p>En yakın randevunuzu hemen alın</p>
+      <div class="doc-list">
+        <div class="doc-item"><div class="doc-ava">👨‍⚕️</div><div><div class="doc-n">Dr. Ahmet Yılmaz</div><div class="doc-t">Kardiyoloji</div></div><div class="doc-badge">Müsait</div></div>
+        <div class="doc-item"><div class="doc-ava">👩‍⚕️</div><div><div class="doc-n">Dr. Zeynep Kaya</div><div class="doc-t">Nöroloji</div></div><div class="doc-badge">Müsait</div></div>
+        <div class="doc-item"><div class="doc-ava">👨‍⚕️</div><div><div class="doc-n">Dr. Murat Demir</div><div class="doc-t">Ortopedi</div></div><div class="doc-badge">Müsait</div></div>
+      </div>
+    </div>
+    <div class="float-cards fc1"><div class="fc-num">4.9★</div><div class="fc-lbl">Hasta Puanı</div></div>
+    <div class="float-cards fc2"><div class="fc-num">15K+</div><div class="fc-lbl">Hasta</div></div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Uzman Doktor</div></div>
+  <div class="stat"><div class="stat-n">15K+</div><div class="stat-l">Mutlu Hasta</div></div>
+  <div class="stat"><div class="stat-n">18</div><div class="stat-l">Yıl Deneyim</div></div>
+  <div class="stat"><div class="stat-n">7/24</div><div class="stat-l">Acil Destek</div></div>
+</section>
+
+<section id="doktorlar">
+  <p class="sec-lbl">Uzman Kadromuz</p>
+  <h2 class="sec-h">Doktorlarımızla <span>Tanışın</span></h2>
+  <p class="sec-p">Alanında uzman, deneyimli hekim kadromuz sizin için burada.</p>
+  <div class="docs-grid">
+    <div class="doc-card"><div class="doc-header">👨‍⚕️</div><div class="doc-body"><span class="doc-spec">Kardiyoloji</span><h3>Dr. Ahmet Yılmaz</h3><p class="exp">15 yıl deneyim</p><div class="doc-stats"><div class="ds-item"><div class="ds-num">2.4K</div><div class="ds-lbl">Hasta</div></div><div class="ds-item"><div class="ds-num">4.9★</div><div class="ds-lbl">Puan</div></div><div class="ds-item"><div class="ds-num">98%</div><div class="ds-lbl">Memnun</div></div></div><button class="doc-btn" onclick="toast('📅 Dr. Ahmet Yılmaz için randevu alınıyor...')">Randevu Al</button></div></div>
+    <div class="doc-card"><div class="doc-header">👩‍⚕️</div><div class="doc-body"><span class="doc-spec">Nöroloji</span><h3>Dr. Zeynep Kaya</h3><p class="exp">12 yıl deneyim</p><div class="doc-stats"><div class="ds-item"><div class="ds-num">1.8K</div><div class="ds-lbl">Hasta</div></div><div class="ds-item"><div class="ds-num">4.8★</div><div class="ds-lbl">Puan</div></div><div class="ds-item"><div class="ds-num">97%</div><div class="ds-lbl">Memnun</div></div></div><button class="doc-btn" onclick="toast('📅 Dr. Zeynep Kaya için randevu alınıyor...')">Randevu Al</button></div></div>
+    <div class="doc-card"><div class="doc-header">👨‍⚕️</div><div class="doc-body"><span class="doc-spec">Ortopedi</span><h3>Dr. Murat Demir</h3><p class="exp">10 yıl deneyim</p><div class="doc-stats"><div class="ds-item"><div class="ds-num">1.5K</div><div class="ds-lbl">Hasta</div></div><div class="ds-item"><div class="ds-num">4.9★</div><div class="ds-lbl">Puan</div></div><div class="ds-item"><div class="ds-num">99%</div><div class="ds-lbl">Memnun</div></div></div><button class="doc-btn" onclick="toast('📅 Dr. Murat Demir için randevu alınıyor...')">Randevu Al</button></div></div>
+    <div class="doc-card"><div class="doc-header">👩‍⚕️</div><div class="doc-body"><span class="doc-spec">Dermatoloji</span><h3>Dr. Selin Arslan</h3><p class="exp">8 yıl deneyim</p><div class="doc-stats"><div class="ds-item"><div class="ds-num">1.2K</div><div class="ds-lbl">Hasta</div></div><div class="ds-item"><div class="ds-num">4.8★</div><div class="ds-lbl">Puan</div></div><div class="ds-item"><div class="ds-num">96%</div><div class="ds-lbl">Memnun</div></div></div><button class="doc-btn" onclick="toast('📅 Dr. Selin Arslan için randevu alınıyor...')">Randevu Al</button></div></div>
+  </div>
+</section>
+
+<section id="hizmetler">
+  <div class="inner">
+    <p class="sec-lbl">Ne Sunuyoruz</p>
+    <h2 class="sec-h">Klinik <span>Hizmetleri</span></h2>
+    <p class="sec-p">Modern ekipman ve uzman kadromuzla kapsamlı sağlık hizmetleri.</p>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-ico">🫀</div><h3>Kardiyoloji</h3><p>EKG, Ekokardiografi, Holter monitörizasyon ve kalp sağlığı takibi.</p><div class="svc-price">Muayene: 350₺'den</div></div>
+      <div class="svc-card"><div class="svc-ico">🧠</div><h3>Nöroloji</h3><p>EEG, sinir iletim çalışmaları, baş ağrısı ve nörobilişsel değerlendirme.</p><div class="svc-price">Muayene: 400₺'den</div></div>
+      <div class="svc-card"><div class="svc-ico">🦴</div><h3>Ortopedi</h3><p>Kemik-eklem hastalıkları, spor yaralanmaları ve ameliyat danışmanlığı.</p><div class="svc-price">Muayene: 350₺'den</div></div>
+      <div class="svc-card"><div class="svc-ico">🔬</div><h3>Laboratuvar</h3><p>Kan tahlili, idrar analizi, hormonal testler ve patoloji incelemesi.</p><div class="svc-price">Paket: 150₺'den</div></div>
+      <div class="svc-card"><div class="svc-ico">📡</div><h3>Görüntüleme</h3><p>Dijital röntgen, ultrasonografi ve MR yönlendirme hizmetleri.</p><div class="svc-price">USG: 250₺'den</div></div>
+      <div class="svc-card"><div class="svc-ico">💊</div><h3>Dahiliye</h3><p>Genel iç hastalıkları, metabolik sendrom, diyabet yönetimi.</p><div class="svc-price">Muayene: 300₺'den</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="randevu">
+  <p class="sec-lbl">Hemen Başlayın</p>
+  <h2>Online <span>Randevu</span></h2>
+  <p>Bilgilerinizi girin, size en uygun zamanı belirleyelim.</p>
+  <form class="appt-form" onsubmit="submitAppt(event)">
+    <div class="form-row">
+      <div class="fg"><label>Ad Soyad</label><input type="text" placeholder="Adınız Soyadınız" required></div>
+      <div class="fg"><label>Telefon</label><input type="tel" placeholder="+90 5XX XXX XX XX" required></div>
+      <div class="fg"><label>Doktor / Bölüm</label><select><option>Kardiyoloji</option><option>Nöroloji</option><option>Ortopedi</option><option>Dermatoloji</option><option>Dahiliye</option><option>Laboratuvar</option></select></div>
+      <div class="fg"><label>Tercih Edilen Tarih</label><input type="date" required></div>
+      <div class="fg"><label>Tercih Edilen Saat</label><select><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option></select></div>
+      <div class="fg"><label>E-posta</label><input type="email" placeholder="ornek@mail.com"></div>
+      <div class="fg full"><label>Şikayetiniz</label><input type="text" placeholder="Kısaca belirtin..."></div>
+    </div>
+    <button type="submit" class="submit-btn">Randevu Talep Et →</button>
+  </form>
+</section>
+
+<footer>
+  <div class="foot-logo">Med<span>Plus</span> Klinik</div>
+  <div class="foot-links"><a href="#">Ana Sayfa</a><a href="#">Doktorlar</a><a href="#">Hizmetler</a><a href="#">İletişim</a></div>
+  <div class="foot-copy">© 2025 MedPlus Klinik | 📍 Şişli, İstanbul | 📞 0212 444 55 66</div>
+</footer>
+
+<script>
+function submitAppt(e){e.preventDefault();toast('✅ Randevu talebiniz alındı! SMS ile onay gönderilecek.');e.target.reset();}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+</script>
+</body>
+</html>
